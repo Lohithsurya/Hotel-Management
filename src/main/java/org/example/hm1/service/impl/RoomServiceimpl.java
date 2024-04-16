@@ -41,4 +41,19 @@ public class RoomServiceimpl implements RoomService {
     public List<Room> getAllRooms(String RoomType) {
         return null;
     }
+
+    @Override
+    public List<Room> getAllAvailableRooms() {
+        // Assuming you have a method in your repository to retrieve available rooms
+        return roomRepository.findByAvailability(true);
+    }
+
+    @Override
+    public List<Room> getAvailableRooms() {
+        return null;
+    }
+
+
+
+
 }

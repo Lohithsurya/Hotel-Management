@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Available Rooms</title>
 </head>
 <body>
-$END$
+<h2>Available Rooms</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Room Number</th>
+        <th>Type</th>
+        <th>Capacity</th>
+        <th>Rate Per Night</th>
+        <th>Book</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over rooms and display details -->
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.roomNumber}"></td>
+        <td th:text="${room.roomType}"></td>
+        <td th:text="${room.capacity}"></td>
+        <td th:text="${room.ratePerNight}"></td>
+        <td>
+            <form th:action="@{/book}" method="post">
+                <input type="hidden" name="roomNumber" th:value="${room.roomNumber}" />
+                <input type="text" name="guestName" placeholder="Enter guest name" required />
+                <input type="date" name="checkInDate" required />
+                <input type="date" name="checkOutDate" required />
+                <button type="submit">Book</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

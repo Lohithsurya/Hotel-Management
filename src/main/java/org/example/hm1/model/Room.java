@@ -1,6 +1,7 @@
 package org.example.hm1.model;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -16,7 +17,9 @@ public class Room {
     public String RoomType;
     public int Capacity;
     public int RatePerNight;
-    public boolean Availability;
+
+    @Column(name = "availability")
+    public boolean availability;
 
 
 
@@ -28,7 +31,7 @@ public class Room {
         RoomType = roomType;
         Capacity = capacity;
         RatePerNight = ratePerNight;
-        Availability = availability;
+        availability = availability;
     }
 
     public int getRoomNumber() {
@@ -64,11 +67,11 @@ public class Room {
     }
 
     public boolean isAvailability() {
-        return Availability;
+        return availability;
     }
 
     public void setAvailability(boolean availability) {
-        Availability = availability;
+        this.availability = availability;
     }
 
 }

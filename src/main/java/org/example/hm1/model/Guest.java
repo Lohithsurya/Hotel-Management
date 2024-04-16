@@ -1,40 +1,47 @@
 package org.example.hm1.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Guest")
 
 public class Guest {
     @Id
-    public  int guestID;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)// or GenerationType.SEQUENC
+
+    public Long guestID;
+
+
     public  String firstName;
     public  String lastName;
     public  String contactNumber;
     public  String email;
-    public  String address;
+
+    public  String password;
     public  String bookingHistory;
 
-    public Guest() {
+    public Guest(String firstName, String lastName, String contactNumber, String email, String password, String bookingHistory) {
 
     }
-    public Guest(int guestID, String firstName, String lastName, String contactNumber, String email, String address, String bookingHistory) {
+    public Guest(Long guestID, String firstName, String lastName, String contactNumber, String email, String password, String bookingHistory) {
         this.guestID = guestID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.contactNumber = contactNumber;
         this.email = email;
-        this.address = address;
+        this.password = password;
         this.bookingHistory = bookingHistory;
     }
 
-    public int getGuestID() {
+    public Guest() {
+
+    }
+
+    public Long getGuestID() {
         return guestID;
     }
 
-    public void setGuestID(int guestID) {
+    public void setGuestID(Long guestID) {
         this.guestID = guestID;
     }
 
@@ -70,14 +77,13 @@ public class Guest {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPassword(String password) {
+        this.password = password;
     }
-
     public String getBookingHistory() {
         return bookingHistory;
     }

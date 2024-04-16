@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-$END$
+<h2>Login</h2>
+<form th:action="@{/guest/login}" method="post" >
+  <div>
+    <label>Email:</label>
+    <input type="text" name="email" required/>
+  </div>
+  <div>
+    <label>Password:</label>
+    <input type="password" name="password" required/>
+  </div>
+  <div>
+    <button type="submit">Login</button>
+  </div>
+</form>
+
 </body>
 </html>

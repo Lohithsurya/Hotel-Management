@@ -1,0 +1,11 @@
+/* Custom styles for the hotel management system */
+
+/* Center align text */
+.container {
+    text-align: center;
+}
+
+/* Margin top for the registration link */
+.mt-3 {
+    margin-top: 20px;
+}

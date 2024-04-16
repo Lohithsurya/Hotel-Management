@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Create Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-$END$
+
+<form th:action="@{/home/create}"  method="post" th:object="${roomcr}" role="form" >
+    <div>
+        <label for="roomNumber">Room Number:</label>
+        <input type="number" id="roomNumber" name="roomNumber" required>
+    </div>
+    <div>
+        <label for="roomType">Room Type:</label>
+        <input type="text" id="roomType" name="roomType" required>
+    </div>
+    <div>
+        <label for="capacity">Capacity:</label>
+        <input type="number" id="capacity" name="capacity" required>
+    </div>
+    <div>
+        <label for="ratePerNight">Rate Per Night:</label>
+        <input type="number" id="ratePerNight" name="ratePerNight" required>
+    </div>
+
+    <div>
+        <input type="hidden"/>
+        <button type="submit">Create Room</button>
+    </div>
+</form>
+
 </body>
 </html>
