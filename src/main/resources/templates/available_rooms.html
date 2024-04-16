@@ -1,38 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Available Rooms</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/available.css">
 </head>
+
 <body>
-<h2>Available Rooms</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Room Number</th>
-        <th>Type</th>
-        <th>Capacity</th>
-        <th>Rate Per Night</th>
-        <th>Book</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Iterate over rooms and display details -->
-    <tr th:each="room : ${rooms}">
-        <td th:text="${room.roomNumber}"></td>
-        <td th:text="${room.roomType}"></td>
-        <td th:text="${room.capacity}"></td>
-        <td th:text="${room.ratePerNight}"></td>
-        <td>
-            <form th:action="@{/book}" method="post">
-                <input type="hidden" name="roomNumber" th:value="${room.roomNumber}" />
-                <input type="text" name="guestName" placeholder="Enter guest name" required />
-                <input type="date" name="checkInDate" required />
-                <input type="date" name="checkOutDate" required />
-                <button type="submit">Book</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <div class="container">
+        <h2 class="text-center">Available Rooms</h2>
+
+        <!-- Iterate over rooms and display as cards -->
+        <div th:each="room : ${rooms}" class="card">
+            <img th:src="${room.imageUrl}" class="card-img-top" alt="Room Image">
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Type</label>
+                    <div th:text="${room.roomType}"></div>
+                </div>
+                <div class="form-group">
+                    <label>Capacity</label>
+                    <div th:text="${room.capacity}"></div>
+                </div>
+                <div class="form-group">
+                    <label>Rate Per Night</label>
+                    <div th:text="${room.ratePerNight}"></div>
+                </div>
+                <form th:action="@{/book}" method="post">
+                    <input type="hidden" name="roomNumber" th:value="${room.roomNumber}" />
+                    <div class="form-group">
+                        <label for="guestName">Guest Name</label>
+                        <input type="text" id="guestName" name="guestName" class="form-control"
+                            placeholder="Enter guest name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="checkInDate">Check-in Date</label>
+                        <input type="date" id="checkInDate" name="checkInDate" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="checkOutDate">Check-out Date</label>
+                        <input type="date" id="checkOutDate" name="checkOutDate" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Book</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to toggle card body -->
+    <script>
+        // Add click event listener to card images
+        document.querySelectorAll('.card-img-top').forEach(function (img) {
+            img.addEventListener('click', function () {
+                var cardBody = this.parentNode.querySelector('.card-body');
+                if (cardBody.style.display === 'none') {
+                    // Show card body if hidden
+                    cardBody.style.display = 'block';
+                } else {
+                    // Hide card body if shown
+                    cardBody.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
